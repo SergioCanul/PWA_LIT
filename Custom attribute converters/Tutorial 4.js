@@ -1,4 +1,4 @@
-//PASO 2
+//PASO 3
 import {LitElement, html} from 'lit';
 
 export class DateDisplay extends LitElement {
@@ -11,6 +11,12 @@ export class DateDisplay extends LitElement {
     super();
     this.date = new Date();
     this.dateStr = '';
+  }
+
+  willUpdate(changed) {
+    if (changed.has('dateStr') && this.dateStr) {
+      this.date = new Date(this.dateStr);
+    }
   }
 
   render() {
