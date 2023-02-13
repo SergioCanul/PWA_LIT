@@ -1,10 +1,19 @@
-//PASO 2
+//PASO 3
 import {LitElement, html} from 'lit';
 
 export class MyElement extends LitElement {
+  static properties = {
+    message: {},
+  };
+
+  constructor() {
+    super();
+    this.message = 'Hello again.';
+  }
+
   render() {
     return html`
-      <p>Hello world! From my-element.</p>
+      <p>${this.message}</p>
     `;
   }
 }
