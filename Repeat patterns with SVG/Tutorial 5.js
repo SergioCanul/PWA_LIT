@@ -1,4 +1,4 @@
-//PASO 3
+//PASO 4
 import {LitElement, html, svg} from 'lit';
 
 const createElement = (chars) => svg`
@@ -26,8 +26,30 @@ const createMotif = (numPrints, offset = 0) => {
     `);
   }
 
-  return svg`<g transform="translate(50, 50)">${prints}</g>`;
+  return svg`
+    <g
+      id="motif"
+      transform="translate(50, 50)">
+        ${prints}
+    </g>
+  `;
 };
+
+const createTileBoundary = () => svg`
+  <clipPath id="rect-clip">
+    <rect width="200" height="200"></rect>
+  </clipPath>
+`;
+
+const createTile = () => svg`
+  <g clip-path="url(#rect-clip)">
+    <use transform="translate(0, 0)" href="#motif"></use>
+    <use transform="translate(0, 100)" href="#motif"></use>
+    <use transform="translate(100, -50)" href="#motif"></use>
+    <use transform="translate(100, 50)" href="#motif"></use>
+    <use transform="translate(100, 150)" href="#motif"></use>
+  </g>
+`;
 
 export class RepeatPattern extends LitElement {
   static properties = {
@@ -50,9 +72,11 @@ export class RepeatPattern extends LitElement {
     return html`
       <svg height="100%" width="100%">
         <defs>
+          ${createTileBoundary()}
           ${createElement(this.chars)}
+          ${createMotif(this.numPrints, this.rotationOffset)}
         </defs>
-        ${createMotif(this.numPrints, this.rotationOffset)}
+            ${createTile()}
       </svg>
     `;
   }
