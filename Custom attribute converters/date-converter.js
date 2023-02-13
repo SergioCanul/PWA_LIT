@@ -1,4 +1,4 @@
-//PASO 4
+//PASO 5
 export const dateConverter = (locale) => {
     return {
       toAttribute: (date) => {
@@ -9,3 +9,4 @@ export const dateConverter = (locale) => {
       },
     };
   };
+  
