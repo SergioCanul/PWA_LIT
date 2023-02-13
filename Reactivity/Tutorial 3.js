@@ -1,4 +1,4 @@
-//PASO 1
+//PASO 2
 import {LitElement, html} from 'lit';
 
 export class MyElement extends LitElement {
