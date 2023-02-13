@@ -1,4 +1,4 @@
-//PASO 7
+//PASO 8
 import {LitElement, html} from 'lit';
 import {map} from 'lit/directives/map.js';
 
