@@ -1,4 +1,4 @@
-//PASO 6
+//PASO 7
 import {LitElement, html, svg, css} from 'lit';
 
 const themeCSS = css`
