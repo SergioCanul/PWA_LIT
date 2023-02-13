@@ -1,7 +1,7 @@
-//PASO 6
+//PASO 7
 import {LitElement, html, css} from 'lit';
 
-export class MyElement extends LitElement {
+export class ByeElement extends LitElement {
   static properties = {
     _showMessage: {state: true},
   };
@@ -31,19 +31,19 @@ export class MyElement extends LitElement {
       <button @click=${() =>
         (this._showMessage = !this._showMessage)}>Click me</button>
       <div id="message" ?hidden=${!this._showMessage}>
-        TADA
+        That's all folks!
       </div>
     `;
   }
 
   updated(changedProperties) {
     if (changedProperties.has('_showMessage')) {
-      const final = this._message.getBoundingClientRect().width;
-      const starting = 0 - final;
+      const rect = this._message.getBoundingClientRect();
+      const startingX = 0 - rect.width;
       this._message.animate(
         [
-          {transform: `translateX(${starting}px)`},
-          {transform: `translateX(0)`},
+          {transform: `translateX(${startingX}px) scale(0.1)`},
+          {transform: `translateX(0) translateY(0) scale(1)`},
         ],
         {
           duration: 500,
@@ -53,4 +53,4 @@ export class MyElement extends LitElement {
     }
   }
 }
-customElements.define('my-element', MyElement);
+customElements.define('bye-element', ByeElement);
