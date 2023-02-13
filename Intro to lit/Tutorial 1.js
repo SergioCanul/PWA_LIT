@@ -1,26 +1,30 @@
-//PASO 4
+//PASO 5
 import {LitElement, html} from 'lit';
 
-export class NameTag extends LitElement {
+export class MoreExpressions extends LitElement {
   static properties = {
-    name: {},
+    checked: {},
   };
 
   constructor() {
     super();
-    this.name = 'Your name here';
+    this.checked = false;
   }
 
   render() {
     return html`
-      <p>Hello, ${this.name}</p>
-      <input @input=${this.changeName} placeholder="Enter your name">
+      <div>
+        <input type="text" ?disabled=${!this.checked} value="Hello there.">
+      </div>
+      <label><input type="checkbox" @change=${
+        this.setChecked
+      }> Enable editing</label>
     `;
   }
 
-  changeName(event) {
-    const input = event.target;
-    this.name = input.value;
+  setChecked(event) {
+    this.checked = event.target.checked;
   }
 }
-customElements.define('name-tag', NameTag);
+customElements.define('more-expressions', MoreExpressions);
+
