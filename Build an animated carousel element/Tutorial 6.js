@@ -1,4 +1,4 @@
-//PASO 9
+//PASO 10
 import {LitElement, html, noChange} from 'lit';
 import {animate} from '@lit-labs/motion';
 import {styleMap} from 'lit/directives/style-map.js';
