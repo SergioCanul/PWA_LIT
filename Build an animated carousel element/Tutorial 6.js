@@ -1,4 +1,4 @@
-//PASO 6
+//PASO 7
 import {LitElement, html} from 'lit';
 import {styles} from './styles.js';
 import {styleMap} from 'lit/directives/style-map.js';
@@ -11,6 +11,16 @@ export class MotionCarousel extends LitElement {
   constructor() {
     super();
     this.selected = 0;
+  }
+
+  get selectedSlot() {
+    return (this.__selectedSlot ??=
+      this.renderRoot?.querySelector('slot[name="selected"]') ?? null);
+  }
+
+  get previousSlot() {
+    return (this.__previousSlot ??=
+      this.renderRoot?.querySelector('slot[name="previous"]') ?? null);
   }
 
   selectedInternal = 0;
@@ -66,7 +76,11 @@ export class MotionCarousel extends LitElement {
   }
 
   updateSlots() {
-    this.children[this.previous]?.removeAttribute('slot');
+    // unset old slot state
+    this.selectedSlot.assignedElements()[0]?.removeAttribute('slot');
+    this.previousSlot.assignedElements()[0]?.removeAttribute('slot');
+    // set slots
+    this.children[this.previous]?.setAttribute('slot', 'previous');
     this.children[this.selected]?.setAttribute('slot', 'selected');
   }
 }
