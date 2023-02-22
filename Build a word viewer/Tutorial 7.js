@@ -1,8 +1,9 @@
-//PASO 6
+//PASO 7
 import {css, html, LitElement} from 'lit';
 
 class WordViewer extends LitElement {
   static properties = {
+    playDirection: {state: true},
     idx: {state: true},
     words: {},
   };
@@ -20,6 +21,7 @@ class WordViewer extends LitElement {
 
   constructor() {
     super();
+    this.playDirection = 1;
     this.idx = 0;
     this.words = 'initial value';
   }
@@ -39,12 +41,20 @@ class WordViewer extends LitElement {
 
   render() {
     const splitWords = this.words.split('.');
-    const word = splitWords[this.idx % splitWords.length];
-    return html`<pre>${word}</pre>`;
+    const idx =
+      ((this.idx % splitWords.length) + splitWords.length) % splitWords.length;
+    const word = splitWords[idx];
+    return html`<pre
+      @click=${this.switchPlayDirection}
+    >${word}</pre>`;
   }
 
   tickToNextWord = () => {
-    this.idx += 1;
+    this.idx += this.playDirection;
   };
+
+  switchPlayDirection() {
+    this.playDirection *= -1;
+  }
 }
 customElements.define('word-viewer', WordViewer);
