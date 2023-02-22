@@ -1,11 +1,22 @@
-//PASO 5
-import {html, LitElement} from 'lit';
+//PASO 6
+import {css, html, LitElement} from 'lit';
 
 class WordViewer extends LitElement {
   static properties = {
     idx: {state: true},
     words: {},
   };
+  static styles = css`
+    :host {
+      background-color: white;
+      color: violet;
+      cursor: pointer;
+      display: block;
+    }
+    pre {
+      padding: 0.2em;
+    }
+  `;
 
   constructor() {
     super();
