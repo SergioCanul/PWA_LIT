@@ -1,4 +1,4 @@
-//PASO 8
+//PASO 9
 import {css, html, LitElement} from 'lit';
 import {classMap} from 'lit/directives/class-map.js';
 
@@ -35,7 +35,7 @@ class WordViewer extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.intervalTimer = setInterval(this.tickToNextWord, 1000);
+    this.intervalTimer = setInterval(this.tickToNextWord, 250);
   }
 
   disconnectedCallback() {
